@@ -1,0 +1,19 @@
+<apex:page controller="PaginationTest">
+  <apex:form >
+   <apex:pageblock >
+    <apex:pageblockSection title="Account Results - Page #{!pageNumber}" columns="1" >
+     <apex:pageblockTable value="{!AccoountList}" var="a">
+       <apex:column value="{!a.Name}"/>
+       <apex:column value="{!a.phone}"/>
+     </apex:pageblockTable> 
+     
+      <apex:panelGrid columns="4">
+          <apex:commandButton action="{!previous}" rendered="{!hasPrevious}" value="Previous" />
+           <apex:commandButton action="{!next}" rendered="{!hasNext}" value="Next" />
+          <apex:commandButton action="{!last}" value="Last" />
+      </apex:panelGrid>
+    
+    </apex:pageblockSection>   
+   </apex:pageblock>  
+  </apex:form>
+</apex:page>

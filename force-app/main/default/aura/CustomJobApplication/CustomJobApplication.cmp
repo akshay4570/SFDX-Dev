@@ -1,0 +1,42 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" controller="JobAppController">
+    <aura:attribute name="PicklistField" type="object"/>
+    <aura:attribute name="joining" type="Integer"/>
+    <aura:attribute name="dateOfJoining" type="Integer"/>
+    <aura:attribute name="status" type="String" default="green"/>
+    <aura:attribute name="candRecord" type="Candidate__c" default="{ 'sobjectType': 'Candidate__c'}"/>
+    <aura:attribute name="fields" type="String[]" default="['First_Name__c','Last_Name__c','City__c','Email__c']" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler event="c:FireGrowChart" action="{!c.captureJoiningDateEvent}"/>
+    
+    <div class="slds-card">
+        <div class="demo-only">
+          <div aura:id="tab-default-1" class="slds-tabs_default__content" role="tabpanel" aria-labelledby="tab-default-1__item">  
+                 <div class="slds-card" aura:id="grow">
+                    <lightning:layout>
+                        <lightning:layoutitem class="{! 'days-block ' + v.status}">
+                            <div class="days">{!v.joining}</div>days before<br/>joining
+                        </lightning:layoutitem>
+                        <lightning:layoutitem flexibility="grow" class="chart">
+                            <div class="{! 'bar ' + v.status }" style="{! 'width:' + (v.dateOfJoining - v.joining )/ 90 * 100 + '%' }"/>
+                            <div class="axis">
+                                <div><div class="legend">0 days</div></div>
+                                <div><div class="legend">{!v.dateOfJoining} days</div></div>
+                            </div>
+                        </lightning:layoutitem>
+                    </lightning:layout>
+              </div>
+                <!--	<lightning:recordViewForm recordId="{!v.candRecord.Candidate__r.Id}" objectApiName="Candidate__c">
+                        <div class="slds-box slds-m-around_medium">
+                            <lightning:outputField fieldName="First_Name__c" />
+                            <lightning:outputField fieldName="Last_Name__c" />
+                            <lightning:outputField fieldName="Email__c" />
+                            <lightning:outputField fieldName="City__c" />
+                        </div>
+                    </lightning:recordViewForm> -->
+              <br/>
+                    <force:recordView recordId="{!v.candRecord.Candidate__r.Id}" />
+              <br/>            		
+          </div>
+    </div>
+</div>
+</aura:component>

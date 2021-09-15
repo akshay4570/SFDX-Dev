@@ -1,0 +1,30 @@
+<aura:component >
+	<div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <img src="{!$Resource.edit}" alt="Job Application" class="pageTitleIcon" title="Job Application" />  
+                     </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate" >Job Application Edit</span>
+                                    </h1>
+                                </div>
+                        </div>
+                        <p class="slds-page-header__name-meta">New Job Application</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slds-page-header">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <h1>Selected Position</h1>
+            </div>
+        </div>
+    </div>
+</aura:component>

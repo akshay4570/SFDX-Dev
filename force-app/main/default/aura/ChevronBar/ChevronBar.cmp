@@ -1,0 +1,9 @@
+<!-- Making use of Lightning Picklist path to implement Chevrons and update them Dynamically -->
+
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" controller="ChevronUpdate">
+    <lightning:picklistPath aura:id="picklistPath" recordId="{!v.recordId}"
+                            variant="linear"
+                            picklistFieldApiName="Status__c"
+                            onselect="{!c.captureSelectedChevron}">
+    </lightning:picklistPath>
+</aura:component>

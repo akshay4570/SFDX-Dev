@@ -1,0 +1,111 @@
+<apex:page doctype="html-5.0" controller="SuitableCandidateSearch">
+            <apex:form id="main_form">
+            <apex:panelGrid columns="2">
+                <apex:pageblock title="Filters" id="blockA">
+                    <apex:pageBlockSection columns="1">
+                        <h1 style="font-size:1rem;font-weight:500">Search By Name</h1>
+                        <apex:inputText html-placeholder="Search by Name" value="{!candidateName}"/>
+                    </apex:pageBlockSection><br/>
+                    <apex:pageBlockSection columns="1">
+                        <apex:outputLabel ><h1 style="font-size:1rem;font-weight:500">Max Experience(0 to 30)</h1></apex:outputLabel>
+                        <input type="range" min="0" max="30" step="1" id="maxAge" oninput="handleMaxAge(this)" value="{!maxAge}" />
+                        <output id="maxAgeOutput" value="{!maxAge}">{!maxAge}</output>
+                        <apex:outputLabel ><h1 style="font-size:1rem;font-weight:500">Min Experience(0 to 30)</h1></apex:outputLabel>
+                        <input type="range" min="0" max="30" step="1" id="minAge" oninput="handleMinAge(this)" value="{!minAge}" />
+                        <output id="minAgeOutput" value="{!minAge}">{!minAge}</output>
+                    </apex:pageBlockSection><br/>
+                    <h1 style="margin-left:5%;font-size:1rem;font-weight:500">Location</h1><br/>
+                 
+                    <apex:repeat value="{!cityWrapList}" var="cty" >
+                        <apex:inputCheckbox value="{!cty.citySelect}" style="margin-left:5%" />
+                        <apex:outputText value="{!cty.city}" /><br/>
+                    </apex:repeat><br/>
+                    <h1 style="margin-left:5%;font-size:1rem;font-weight:500">Skills</h1><br/>
+                    <apex:repeat value="{!skillWrapList}" var="skll">
+                        <apex:inputCheckbox value="{!skll.selected}" style="margin-left:5%"/>
+                        <apex:outputText value="{!skll.skill}" /><br/>
+                    </apex:repeat>
+                    <apex:commandButton value="Search" style="width:40%;margin-top:5%;margin-left:1%" action="{!searchCandidatesByName}"/> 
+    
+                    
+                    <apex:actionFunction name="setMinAge" reRender="out">
+                        <apex:param name="minval" value="" assignTo="{!minAge}"/>
+                    </apex:actionFunction>
+                    
+                    <apex:actionFunction name="setMaxAge" reRender="out">
+                        <apex:param name="maxval" value="" assignTo="{!maxAge}"/>
+                    </apex:actionFunction>
+                    
+                </apex:pageblock>
+                <apex:pageblock title="Position - {!posApplied.Name}" id="blockB">
+                   <apex:pageBlockButtons >
+                       <apex:commandLink action="{!last}" rendered="{!If(screeningWrapList.size > 0,true,false)}" value="Last" style="float:right;margin:1%"/>
+                       <apex:commandLink action="{!next}" rendered="{!hasNext}" value="Next" style="float:right;margin:1%"/>
+                       <apex:commandLink action="{!previous}" rendered="{!hasPrevious}" value="Previous" style="float:right;margin:1%"/>
+                       <apex:commandLink action="{!first}" rendered="{!If(screeningWrapList.size > 0,true,false)}" value="First" style="float:right;margin:1%"/>  
+                       <apex:commandButton value="Select for Screening" action="{!selectForScreening}" rendered="{!If(screeningWrapList.size > 0,true,false)}" style="margin:1%" />
+                    </apex:pageBlockButtons>
+                    <apex:pageBlockSection id="candidates-table" columns="1" >
+                        <apex:pageBlockSectionItem dataStyle="width:800px" >
+                            <apex:pageBlockTable value="{!screeningWrapList}" var="c" width="500px" id="candidatesList" rendered="{!If(screeningWrapList.size > 0,true,false)}">
+                                <apex:column >
+                                    <apex:facet name="header">Select</apex:facet>
+                                    <apex:inputCheckbox value="{!c.isSelected}" />
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">Id</apex:facet>
+                                    {!c.candRecord.Name}
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">Full Name</apex:facet>
+                                    <apex:outputLink target="_blank" value="https://cunning-shark-efdyl2-dev-ed.my.salesforce.com/{!c.candRecord.id}">{!c.candRecord.First_Name__c} {!c.candRecord.Last_Name__c} </apex:outputLink> 
+                                </apex:column>
+                                <apex:column >
+                                    <apex:facet name="header">City</apex:facet>
+                                    {!c.candRecord.City__c}
+                                </apex:column>     
+                            </apex:pageBlockTable>
+                        </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection rendered="{!If(cnt == 0,true,false)}" >
+                       <apex:pageBlockSectionItem dataStyle="width:800px">
+                        <h1 style="width:100%">
+                            Sorry!! Couldn't fetch the records specified...
+                        </h1>
+                        <apex:image url="{!$Resource.PageNotFound}" alt="File Not found" style="margin-left:20%;width:200%" />
+                    </apex:pageBlockSectionItem>    
+                </apex:pageBlockSection>
+                </apex:pageblock>
+            </apex:panelGrid>
+        </apex:form>
+    
+    <script>
+    /*function oneCheckbox(obj)
+        {
+            if (obj.checked)
+            {
+                var inputs = document.getElementsByTagName("input");
+        
+                for (var i = 0; i < inputs.length; i++)
+                {
+                    var oInput = inputs[i];
+                    if (oInput.type == "checkbox" && oInput.checked && oInput != obj)
+                    {
+                        oInput.checked = false; 
+                    }  
+                }
+            }
+            CallApexMethod(obj.id.split(':')[4]);
+        }*/
+    
+        function handleMinAge(obj){
+            document.getElementById('minAgeOutput').innerHTML = obj.value;
+            setMinAge(obj.value);
+        }
+        function handleMaxAge(obj){
+            document.getElementById('maxAgeOutput').innerHTML = obj.value;
+            setMaxAge(obj.value);
+        }
+
+</script>
+</apex:page>

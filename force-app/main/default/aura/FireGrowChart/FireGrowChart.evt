@@ -1,0 +1,7 @@
+<!-- This is an application event which fired from one component can be captured by another
+  and appropriate event handlers are deployed to perform the respective actions -->
+
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="joining" type="Integer"/>
+    <aura:attribute name="doj" type="Integer"/>
+</aura:event>
