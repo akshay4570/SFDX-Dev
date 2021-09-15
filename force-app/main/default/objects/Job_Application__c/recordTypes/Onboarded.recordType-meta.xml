@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Onboarded</fullName>
+    <active>true</active>
+    <description>This is for Onboarded purposes</description>
+    <label>Onboarded</label>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Onboarded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Screening in progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Selected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>
