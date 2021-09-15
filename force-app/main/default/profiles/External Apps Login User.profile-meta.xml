@@ -5,6 +5,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>AccountControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>AdvancedCandidateSearch</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -46,6 +50,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>BotTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CandidateControllerTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
