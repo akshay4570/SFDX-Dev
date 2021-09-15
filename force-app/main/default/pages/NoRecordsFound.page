@@ -1,7 +1,0 @@
-<apex:page >
-    <apex:pageBlock >
-        <apex:pageBlockSection >
-            <apex:outputLabel >Sorry,couldn't find any records with the specified fields.</apex:outputLabel>
-        </apex:pageBlockSection>
-    </apex:pageBlock>
-</apex:page>

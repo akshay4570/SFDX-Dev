@@ -1,9 +1,0 @@
-<apex:page >
-    <apex:pageBlock >
-        <apex:pageBlockSection >
-            <apex:pageBlockSectionItem >
-                <apex:outputLabel >Error Loading Page....</apex:outputLabel>
-            </apex:pageBlockSectionItem>
-        </apex:pageBlockSection>
-    </apex:pageBlock>
-</apex:page>
