@@ -3,10 +3,6 @@
     {
       "path": "force-app",
       "default": true
-    },
-    {
-      "path": "./force-app",
-      "default": false
     }
   ],
   "name": "GitDev",
