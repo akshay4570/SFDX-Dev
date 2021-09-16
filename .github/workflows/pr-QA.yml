@@ -52,6 +52,6 @@ jobs:
         sgd --to pr --from origin/QA --repo . --output .
         cat package/package.xml
     - name: 'Convert Metadata'
-      run: sfdx force:source:convert --rootdir=force-app --manifest=package/package.xml --outputdir=convert
+      run: sfdx force:source:convert --rootdir=force-app --outputdir=convert
     - name: 'Run Test on Metadata'
       run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests -u hub-org 
