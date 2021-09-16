@@ -1,7 +1,0 @@
-<apex:page >
-  <apex:pageBlock >
-      <apex:pageBlockSection >
-          <apex:outputLabel >Sorry, only Integer fields allowed.</apex:outputLabel>
-      </apex:pageBlockSection>
-  </apex:pageBlock>
-</apex:page>
