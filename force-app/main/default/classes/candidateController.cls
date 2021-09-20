@@ -1,6 +1,6 @@
 public with sharing class candidateController {
     public candidateController() {
-
+        System.debug('Inside Constructor');
     }
 
     @AuraEnabled(cacheable=true)
