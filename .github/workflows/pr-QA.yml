@@ -45,13 +45,13 @@ jobs:
         sgd --to pr --from origin/QA --repo . --output .
         cat package/package.xml
     - name: 'Static Code Analysis'
-      run: sfdx scanner:run --pmdconfig=package/package.xml --target=force-app --outputfile=results.csv --format=csv > results.csv
+      run: sfdx scanner:run --target=force-app --outputfile=results.csv --format=csv > results.csv
     - name: Archive static code analysis results
       uses: actions/upload-artifact@v2
       with:
         name: static-code-analysis-report
         path: results.csv
     - name: 'Convert Metadata'
-      run: sfdx force:source:convert --rootdir=force-app --outputdir=convert
+      run: sfdx force:source:convert --rootdir=force-app --manifest=package/package.xml --outputdir=convert
     - name: 'Run Test on Metadata'
       run: sfdx force:mdapi:deploy --deploydir=convert --testlevel=RunLocalTests --checkonly -w30 -u hub-org
